@@ -1,16 +1,16 @@
 // import logo from "./logo.svg";
-import "./normal.css";
-import "./App.css";
-import { useState, useRef, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import './normal.css';
+import './App.css';
+import { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function App() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [chatLog, setChatLog] = useState([
     {
-      role: "assistant",
-      content: "How can I help you?",
+      role: 'assistant',
+      content: 'How can I help you?',
     },
   ]);
   function clearChat() {
@@ -24,16 +24,16 @@ function App() {
   }, [chatLog]);
   async function handlesubmit(e) {
     e.preventDefault();
-    let chatlogNew = [...chatLog, { role: "user", content: `${input}` }];
-    await setInput("");
+    let chatlogNew = [...chatLog, { role: 'user', content: `${input}` }];
+    await setInput('');
     await setChatLog(chatlogNew);
     // const messages = chatlogNew.map((content) => content.content).join("\n");
     const messages = chatlogNew;
     console.log(messages);
-    const response = await fetch("http://localhost:3080", {
-      method: "POST",
+    const response = await fetch('http://localhost:3080', {
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         content: messages,
@@ -47,28 +47,27 @@ function App() {
     ]);
   }
   return (
-    <div className="App">
-      <aside className="sidemenu">
-        <div className="sidemenubutton" onClick={clearChat}>
+    <div className='App'>
+      <aside className='sidemenu'>
+        <div className='sidemenubutton' onClick={clearChat}>
           <span>+</span>
           New Chat
         </div>
       </aside>
-      <section className="chatbox">
-        <div className="chat-log" ref={chatLogRef}>
+      <section className='chatbox'>
+        <div className='chat-log' ref={chatLogRef}>
           {chatLog.map((content, index) => (
             <ChatMessage key={index} content={content} />
           ))}
         </div>
-        <div className="chat-input-holder">
+        <div className='chat-input-holder'>
           <form onSubmit={handlesubmit}>
             <input
-              rows="1"
+              rows='1'
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="chat-input-text-area"
-              placeholder="Type your prompt here"
-            ></input>
+              onChange={e => setInput(e.target.value)}
+              className='chat-input-text-area'
+              placeholder='Type your prompt here'></input>
           </form>
         </div>
       </section>
@@ -79,36 +78,28 @@ export default App;
 
 const ChatMessage = ({ content }) => {
   return (
-    <div
-      className={`chat-message ${
-        content.role === "assistant" ? "chatgpt" : ""
-      }`}
-    >
-      <div className="chat-message-center">
-        <div
-          className={`avatar ${content.role === "assistant" ? "chatgpt" : ""}`}
-        >
-          {content.role === "assistant" && (
+    <div className={`chat-message ${content.role === 'assistant' ? 'chatgpt' : ''}`}>
+      <div className='chat-message-center'>
+        <div className={`avatar ${content.role === 'assistant' ? 'chatgpt' : ''}`}>
+          {content.role === 'assistant' && (
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={41}
-              height={41}
-              fill="none"
-              strokeWidth={1.5}
-              className="h-6 w-6"
-            >
+              xmlns='http://www.w3.org/2000/svg'
+              width={24}
+              height={24}
+              fill='none'
+              className='icon-md'>
+              <text x={-9999} y={-9999}>
+                {'ChatGPT'}
+              </text>
               <path
-                fill="currentColor"
-                d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835A9.964 9.964 0 0 0 18.306.5a10.079 10.079 0 0 0-9.614 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.516 3.35 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813ZM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496ZM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744ZM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.01L7.04 23.856a7.504 7.504 0 0 1-2.743-10.237Zm27.658 6.437-9.724-5.615 3.367-1.943a.121.121 0 0 1 .113-.01l8.052 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.65-1.132Zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763Zm-21.063 6.929-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225Zm1.829-3.943 4.33-2.501 4.332 2.5v5l-4.331 2.5-4.331-2.5V18Z"
+                fill='white'
+                d='M21.97 9.875a5.832 5.832 0 0 0-.501-4.791 5.899 5.899 0 0 0-6.354-2.83A5.833 5.833 0 0 0 10.716.293a5.9 5.9 0 0 0-5.628 4.084 5.834 5.834 0 0 0-3.901 2.83 5.9 5.9 0 0 0 .726 6.917 5.833 5.833 0 0 0 .501 4.791 5.9 5.9 0 0 0 6.354 2.83 5.833 5.833 0 0 0 4.4 1.961 5.899 5.899 0 0 0 5.629-4.086 5.834 5.834 0 0 0 3.9-2.83 5.9 5.9 0 0 0-.728-6.915Zm-8.8 12.302a4.375 4.375 0 0 1-2.809-1.016c.036-.019.098-.053.139-.078l4.662-2.693a.757.757 0 0 0 .383-.664v-6.572l1.97 1.138a.07.07 0 0 1 .039.054v5.443a4.393 4.393 0 0 1-4.384 4.388ZM3.742 18.15a4.373 4.373 0 0 1-.523-2.94c.035.021.095.058.139.083l4.662 2.693a.759.759 0 0 0 .766 0l5.692-3.286v2.276a.07.07 0 0 1-.028.06l-4.713 2.721a4.393 4.393 0 0 1-5.994-1.606ZM2.515 7.973A4.372 4.372 0 0 1 4.8 6.049l-.002.16v5.386a.757.757 0 0 0 .383.663l5.692 3.286-1.97 1.138a.07.07 0 0 1-.067.006l-4.715-2.724a4.393 4.393 0 0 1-1.606-5.992Zm16.19 3.768-5.692-3.287 1.971-1.137a.071.071 0 0 1 .066-.006l4.713 2.721a4.389 4.389 0 0 1-.678 7.919v-5.547a.757.757 0 0 0-.38-.663Zm1.961-2.952a5.56 5.56 0 0 0-.138-.083l-4.662-2.693a.76.76 0 0 0-.766 0L9.408 9.299V7.023a.07.07 0 0 1 .028-.06l4.712-2.719a4.388 4.388 0 0 1 6.518 4.544Zm-12.33 4.056-1.971-1.138a.07.07 0 0 1-.038-.054V6.21a4.388 4.388 0 0 1 7.196-3.369 4.062 4.062 0 0 0-.138.078L8.723 5.612a.757.757 0 0 0-.383.663l-.004 6.571Zm1.071-2.308 2.535-1.464 2.536 1.463v2.927l-2.535 1.463-2.535-1.463v-2.926Z'
               />
             </svg>
           )}
         </div>
-        <div className="content">
-          <ReactMarkdown
-            children={content.content}
-            remarkPlugins={[remarkGfm]}
-          />
+        <div className='content'>
+          <ReactMarkdown children={content.content} remarkPlugins={[remarkGfm]} />
         </div>
       </div>
     </div>
