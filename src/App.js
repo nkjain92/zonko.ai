@@ -69,6 +69,10 @@ function App() {
               className='chat-input-text-area'
               placeholder='Type your prompt here'></input>
           </form>
+          <div className='disclaimer'>
+            {' '}
+            <p>All LLMs can make mistakes. Consider checking important information.</p>
+          </div>
         </div>
       </section>
     </div>

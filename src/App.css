@@ -49,9 +49,10 @@
 }
 .chat-log {
   overflow-y: auto;
-  max-height: calc(100vh - 96px);
+  max-height: calc(100vh - 120px);
   text-align: left;
   background-color: #343541;
+
 }
 .avatar {
   background: white;
@@ -75,19 +76,18 @@
   background-color: #343541 ;
 }
 .chat-message.chatgpt {
-  background-color: #434654;  margin-left: auto;
+  background-color: #434654;
+  margin-left: auto;
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
+  line-height: 1.5em;
 }
 .chat-message-center {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-  /* margin-top: auto;
-  margin-bottom: auto; */
   text-align: left;
-  /* padding: 12px; */
   padding-left: 36px;
   padding-right: 36px;
   display: flex;
@@ -102,4 +102,9 @@
 .sidemenubutton span {
   padding-right: 6px;
   padding-left: 6px;
+}
+
+.disclaimer {
+  font-size: 0.7em;
+  color: #a0a0a0;
 }
