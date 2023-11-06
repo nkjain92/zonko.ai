@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "babel src --out-dir dist --extensions \".js,.jsx\" --copy-files",
-    "start": "npm run build && node dist/index.js",
+    "build": "babel src --out-dir ../zonko.ai/build --extensions \".js,.jsx\" --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
