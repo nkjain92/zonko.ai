@@ -1,0 +1,14 @@
+Zonko.ai
+
+User actions:
+- User should be able to select between text models, image models and video models.
+- Change should be with a simple @
+- History of all chats
+- Context should also switch between models (e.g. if i gave some conext to chatgpt, that should go to claude as well if I switch models)
+- Login with email (one click ho toh sahi)
+- Ensure generation doesn't stop mid-way
+
+Good to haves:
+- web search
+- CSV upload and data analysis
+- context setting (+ prompt marketplace link?)
