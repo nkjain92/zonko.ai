@@ -1,5 +1,0 @@
-
-INFO [2023-11-07T05:02:27.280Z]: opened
-INFO [2023-11-07T05:02:27.281Z]: {"agent":"cosine-vscode","version":"1.0.7","package":"@cosine/analytics","token":"1803ee20efed77dfecbf705fb8dc4c18","mp_lib":"node","$lib_version":"0.17.0"}
-INFO [2023-11-07T05:51:03.658Z]: extension_initialized
-INFO [2023-11-07T05:51:03.658Z]: {"timeToInit":2353,"agent":"cosine-vscode","version":"1.0.7","package":"@cosine/analytics","token":"1803ee20efed77dfecbf705fb8dc4c18","mp_lib":"node","$lib_version":"0.17.0"}
