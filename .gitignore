@@ -1,36 +1,39 @@
 # Dependency directories
-node_modules/
+/node_modules/
 
 # Build outputs
-/build
-/dist
+/build/
+/dist/
+
+# Bundled JS and CSS
 *.bundle.js
 *.bundle.css
 
-# Environment variables
+# Environment configuration files
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.env.*  # This line already covers all .env files, the specific listings above are redundant if you have this wildcard.
 
-# Debug logs
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 # Editor directories and files
-.idea
-.vscode
+.idea/
+.vscode/
 *.swp
 *.swo
 *.sublime-workspace
 
 # Optional npm cache directory
-.npm
+.npm/
 
 # Optional eslint cache
-.eslintcache
+.eslintcache/
 
 # Optional REPL history
 .node_repl_history
@@ -41,28 +44,19 @@ yarn-error.log*
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env.*
+# parcel-bundler cache (not needed if not using Parcel)
+# .cache/
+# .parcel-cache/
 
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build output
-.next
-out/
-
-# Nuxt.js build / generate output
-.nuxt
-dist/
-
-# Gatsby files
-.cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
-# public
+# Next.js, Nuxt.js, Gatsby, and VuePress build output (remove if not using these frameworks)
+# .next/
+# out/
+# .nuxt/
+# .cache/  # Gatsby's cache
+# public/  # Uncomment if using Gatsby
 
 # vuepress build output
-.vuepress/dist
+# .vuepress/dist
 
 # Serverless directories
 .serverless/
