@@ -2,6 +2,7 @@
 import { signIn, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -23,9 +24,14 @@ export default function Home() {
   }
 
   return (
-    <div className='App'>
-      <h1>Welcome to Our Chat Application</h1>
-      <button onClick={() => signIn()}>Login</button>
+    <div className={styles.loginContainer}>
+      <div className={styles.loginContent}>
+        <h1 className={styles.title}>ChatGot</h1>
+        <p className={styles.subtitle}>Chat Freely, Got Every AI Assistants Here for You</p>
+        <button onClick={() => signIn()} className={styles.signInButton}>
+          Sign in with Google
+        </button>
+      </div>
     </div>
   );
 }
