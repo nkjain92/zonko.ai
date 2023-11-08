@@ -1,79 +1,31 @@
-import { useState, useRef, useEffect } from "react";
-import ChatMessage from "../components/chatMessage";
+// pages/index.js
+import { signIn, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  const [input, setInput] = useState("");
-  const [chatLog, setChatLog] = useState([
-    {
-      role: "assistant",
-      content: "How can I help you?",
-    },
-  ]);
-  function clearChat() {
-    setChatLog([]);
-  }
-  const chatLogRef = useRef(null);
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   useEffect(() => {
-    if (chatLogRef.current) {
-      chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
+    // Redirect to the main chat screen if logged in
+    if (status === 'authenticated') {
+      router.push('/main-chat-screen');
     }
-  }, [chatLog]);
-  async function handlesubmit(e) {
-    e.preventDefault();
-    let chatlogNew = [...chatLog, { role: "user", content: `${input}` }];
-    await setInput("");
-    await setChatLog(chatlogNew);
-    // const messages = chatlogNew.map((content) => content.content).join("\n");
-    const messages = chatlogNew;
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        content: messages,
-      }),
-    });
-    const data = await response.json();
-    await setChatLog([
-      ...chatlogNew,
-      // { role: "assistant", content: `${data.content}` },
-      data.content,
-    ]);
+  }, [session, status, router]);
+
+  if (status === 'loading') {
+    return <div>Loading...</div>; // Or any loading indicator you prefer
   }
+
+  if (session) {
+    return null; // Or a loading indicator as the useEffect hook will handle redirection
+  }
+
   return (
-    <div className="App">
-      <aside className="sidemenu">
-        <div className="sidemenubutton" onClick={clearChat}>
-          <span>+</span>
-          New Chat
-        </div>
-      </aside>
-      <section className="chatbox">
-        <div className="chat-log" ref={chatLogRef}>
-          {chatLog.map((content, index) => (
-            <ChatMessage key={index} content={content} />
-          ))}
-        </div>
-        <div className="chat-input-holder">
-          <form onSubmit={handlesubmit}>
-            <input
-              rows="1"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="chat-input-text-area"
-              placeholder="Type your prompt here"
-            ></input>
-          </form>
-          <div className="disclaimer">
-            {" "}
-            <p>
-              All LLMs can make mistakes. Consider checking important
-              information.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className='App'>
+      <h1>Welcome to Our Chat Application</h1>
+      <button onClick={() => signIn()}>Login</button>
     </div>
   );
 }
