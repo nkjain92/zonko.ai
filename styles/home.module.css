@@ -5,7 +5,7 @@
 }
 
 .leftSide {
-  background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rawpixel.com%2Fsearch%2Ffuturistic%2520background&psig=AOvVaw3tgrQ8BpUhLi5Ob4wyS1Ak&ust=1699518918489000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCumr3_s4IDFQAAAAAdAAAAABAE'); /* Replace with your image path */
+  background-color: rgb(43, 104, 226); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -15,7 +15,7 @@
 
 .dynamicText {
   font-size: 2rem; /* Adjust size as needed */
-  color: white; /* Adjust color as needed */
+  color: rgb(237, 188, 95); /* Adjust color as needed */
   font-weight: bold; /* Adjust weight as needed */
   animation: fadeIn 2s infinite; /* Smooth transition for text changes */
 }
