@@ -1,39 +1,49 @@
-/* styles/Home.module.css */
-.loginContainer {
+.container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100vh;
+}
+
+.leftSide {
+  background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rawpixel.com%2Fsearch%2Ffuturistic%2520background&psig=AOvVaw3tgrQ8BpUhLi5Ob4wyS1Ak&ust=1699518918489000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCumr3_s4IDFQAAAAAdAAAAABAE'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding-left: 50px; /* Adjust as needed for text alignment */
+}
+
+.dynamicText {
+  font-size: 2rem; /* Adjust size as needed */
+  color: white; /* Adjust color as needed */
+  font-weight: bold; /* Adjust weight as needed */
+  animation: fadeIn 2s infinite; /* Smooth transition for text changes */
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.rightSide {
+  background-color: #f7f7f7; /* Adjust color as needed */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #4c6ef5; /* Or the background color/image you prefer */
-}
-
-.loginContent {
-  text-align: center;
-  color: white;
-}
-
-.title {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .signInButton {
-  background-color: #ffffff;
-  color: #4c6ef5;
-  border: none;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1rem;
+  border: none;
   cursor: pointer;
+  background-color: #4285F4; /* Google button blue */
+  color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
 }
 
 .signInButton:hover {
-  background-color: #e8e8e8;
+  background-color: #357ae8; /* Darker blue on hover */
 }
