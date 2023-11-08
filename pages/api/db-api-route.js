@@ -1,5 +1,5 @@
 // pages/api/some-api-route.js
-import pool from "../../lib/db";
+import pool from "../../db/db.js";
 
 export default async function handler(req, res) {
   try {
