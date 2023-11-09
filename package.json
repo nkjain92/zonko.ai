@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.7",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
@@ -22,6 +23,7 @@
     "next-auth": "^4.24.4",
     "openai": "^4.16.1",
     "pg": "^8.11.3",
+    "prisma": "^5.5.2",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.0",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
+    "@types/next-auth": "^3.15.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
