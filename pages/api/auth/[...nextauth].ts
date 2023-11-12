@@ -17,56 +17,60 @@ export default NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ account, profile }) {
+      if (!profile?.email) {
+        return false; // Email is required for sign in
+      }
+
       // Check if the user exists in the database
       const existingUser = await prisma.user.findUnique({
-        where: {
-          email: user.email,
-        },
+        where: { email: profile.email },
       });
 
       if (existingUser) {
-        // User already exists, sign-in allowed
-        return true;
+        return true; // User already exists, sign-in allowed
       } else {
         // User doesn't exist yet, create a new user entry in the database
         await prisma.user.create({
           data: {
-            email: user.email,
-            name: user.name,
-            image: user.image,
-            // Other user fields if necessary
+            email: profile.email,
+            name: profile.name ?? null, // Use null as the fallback for optional fields
+            image: profile.image ?? null, // Use null for the optional field `image`
           },
         });
         return true;
       }
     },
     async session({ session, token }) {
+      if (!token.sub) {
+        return session; // Handle 'sub' possibly being 'undefined'
+      }
+
       // Fetch additional user details and include them in the session
       const user = await prisma.user.findUnique({
-        where: {
-          id: token.sub, // `sub` is the user ID that is used in NextAuth.js JWT
+        where: { id: token.sub },
+        select: {
+          name: true,
+          email: true,
+          image: true,
         },
       });
 
       if (user) {
         session.user = {
-          ...session.user,
-          id: user.id,
-          name: user.name,
-          email: user.email,
+          name: user.name ?? null,
+          email: user.email ?? null,
+          image: user.image ?? null,
         };
       }
 
       return session;
     },
-    // ... other callbacks
   },
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",
-    // ... other custom pages
   },
 });
